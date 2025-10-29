@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Proyecto 2 - Programación Funcional y Colecciones</title>
+</head>
+<body>
+<h1>Trabajo CES2 - Programación Funcional y Colecciones</h1>
+
+<!-- Resultados de todos los puntos -->
+<div>
+    <h2>Resultados Completos</h2>
+    <div th:each="resultado : ${resultados}">
+        <div th:text="${resultado}"></div>
+    </div>
+</div>
+
+<!-- Información de Estudiantes -->
+<div>
+    <h2>Estudiantes Creados</h2>
+    <div th:each="estudiante : ${estudiantes}">
+        <h3 th:text="${estudiante.nombre}"></h3>
+        <p><strong>Facultad:</strong> <span th:text="${estudiante.facultad}"></span></p>
+        <p><strong>Universidad:</strong> <span th:text="${estudiante.universidad}"></span></p>
+        <p><strong>Materias:</strong> <span th:text="${estudiante.materias}"></span></p>
+        <hr>
+    </div>
+</div>
+
+<!-- Estudiantes UNAL -->
+<div>
+    <h2>Estudiantes de la Universidad UNAL (Punto 3)</h2>
+    <p th:if="${estudiantesUNAL.empty}">No hay estudiantes de la universidad UNAL</p>
+    <ul th:unless="${estudiantesUNAL.empty}">
+        <li th:each="nombre : ${estudiantesUNAL}" th:text="${nombre}"></li>
+    </ul>
+</div>
+
+<!-- Información del Profesor -->
+<div>
+    <h2>Información del Profesor</h2>
+    <div th:object="${profesor}">
+        <h3 th:text="*{nombre}"></h3>
+        <p><strong>Facultad:</strong> <span th:text="*{facultad}"></span></p>
+        <p><strong>Universidad:</strong> <span th:text="*{universidad}"></span></p>
+        <p><strong>Número de Estudiantes:</strong> <span th:text="*{estudiantes.size()}"></span></p>
+    </div>
+</div>
+
+<!-- Resultado Punto 5 -->
+<div>
+    <h2>Punto 5 - Método verTotalMaterias</h2>
+    <p th:text="${punto5}"></p>
+</div>
+</body>
+</html>
